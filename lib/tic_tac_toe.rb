@@ -27,8 +27,8 @@ def move(board, index, current_player)
   board[index] = current_player
 end
 
-def position_taken?(board,index)
-  !(@board[@index] == " " || @board[@index].nil)
+def position_taken?(board, location)
+  board[location] != " " && board[location] != ""
 end
 
 def valid_move?(board, index)
@@ -38,33 +38,33 @@ end
 def turn(board)
   puts "Please enter 1-9:"
   input = gets.strip
-  @index = input_to_index(@input)
-  current_player(@board)
-  @current_player = current_player(@board)
-  if valid_move?(@board, @index)
-    move(@board, @index, @current_player)
-    display_board(@board)
+  index = input_to_index(input)
+  current_player(board)
+  current_player = current_player(board)
+  if valid_move?(board, index)
+    move(board, index, current_player)
+    display_board(board)
   else
-    turn(@board)
+    turn(board)
   end
 end
 
 def turn_count(board)
-  @counter = 0
- @board.each do |position|
-   if @position == "X" || @position == "O"
+  counter = 0
+ board.each do |position|
+   if position == "X" || position == "O"
      #or is a hard stop in ruby not this position == ("X" || "O") but this ^
      #because ruby reads ("X" || "O") as (true || false)
-     @counter += 1
+     counter += 1
    else
    end
  end
-  return @counter
+  return counter
 end
 
 def current_player(board)
-  @counter = turn_count(@board)
-  if @counter % 2 == 0
+  counter = turn_count(board)
+  if counter % 2 == 0
     return "X"
   else
     return "O"
@@ -72,7 +72,7 @@ def current_player(board)
 end
 
 def position_taken?(board, index)
-    !(@board[@index].nil? || @board[@index] == " ")
+    !(board[index].nil? || board[index] == " ")
 end
 
 def won?(board)

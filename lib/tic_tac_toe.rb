@@ -19,8 +19,8 @@ def display_board(board)
   puts " #{board[6]} | #{board[7]} | #{board[8]} "
 end
 
-def input_to_index(user_input)
-  user_input.to_i - 1
+def input_to_index(input)
+  input.to_i - 1
 end
 
 def move(board, index, current_player)
@@ -50,12 +50,12 @@ def turn(board)
 end
 
 def turn_count(board)
-  counter = 0
- board.each do |position|
-   if position == "X" || position == "O"
+  @counter = 0
+ @board.each do |position|
+   if @position == "X" || @position == "O"
      #or is a hard stop in ruby not this position == ("X" || "O") but this ^
      #because ruby reads ("X" || "O") as (true || false)
-     counter += 1
+     @counter += 1
    else
    end
  end
